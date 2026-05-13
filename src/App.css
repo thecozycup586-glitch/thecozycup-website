@@ -1,0 +1,167 @@
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 60;
+  height: 3px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(199, 138, 68, 0.75), rgba(245, 209, 161, 1));
+  box-shadow: 0 0 22px rgba(199, 138, 68, 0.55);
+}
+
+.ambient-beam {
+  width: min(56rem, 82vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 229, 198, 0.65), rgba(199, 138, 68, 0.9), transparent);
+  opacity: 0.42;
+}
+
+.section-ambient {
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 228, 196, 0.3), transparent 24%),
+    radial-gradient(circle at 55% 58%, rgba(199, 138, 68, 0.28), rgba(199, 138, 68, 0.08) 52%, transparent 70%);
+  filter: blur(54px);
+  pointer-events: none;
+}
+
+.hero-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pill {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  backdrop-filter: blur(16px);
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.74rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+}
+
+.section-shell,
+.showcase-panel,
+.menu-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(24, 17, 12, 0.72), rgba(12, 8, 6, 0.88));
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.section-shell::before,
+.showcase-panel::before,
+.menu-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 38%);
+  pointer-events: none;
+}
+
+.menu-card {
+  transition:
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--border-strong);
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.28);
+}
+
+.menu-card:hover .outline-number {
+  -webkit-text-stroke: 1px rgba(242, 229, 211, 0.44);
+}
+
+.parallax-orb {
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 232, 205, 0.62), transparent 26%),
+    radial-gradient(circle at 65% 65%, rgba(199, 138, 68, 0.42), rgba(199, 138, 68, 0.05) 60%, transparent 74%);
+  filter: blur(8px);
+  animation: drift 10s ease-in-out infinite;
+}
+
+.bean {
+  position: relative;
+  width: 4.75rem;
+  height: 6rem;
+  border-radius: 55% 45% 53% 47%;
+  background: linear-gradient(180deg, #8d5a32, #4d2e18);
+  box-shadow: inset -12px -10px 16px rgba(0, 0, 0, 0.16), inset 8px 10px 18px rgba(255, 228, 194, 0.18);
+  transform: rotate(28deg);
+}
+
+.bean::after {
+  content: '';
+  position: absolute;
+  inset: 10% 44%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(242, 229, 211, 0.62), rgba(56, 31, 15, 0.72));
+}
+
+.marquee-shell {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.marquee-track {
+  display: inline-flex;
+  min-width: max-content;
+  gap: 1.8rem;
+  padding: 1rem 0;
+  color: rgba(242, 229, 211, 0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.glow-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 138, 68, 0.8), transparent);
+}
+
+.outline-number {
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 7vw, 8rem);
+  line-height: 0.82;
+  -webkit-text-stroke: 1px rgba(242, 229, 211, 0.2);
+  transition: -webkit-text-stroke 0.35s ease;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-card:hover {
+    transform: none;
+  }
+}
