@@ -48,7 +48,7 @@ jobs:
         run: npm run build
 
       - name: Generate CycloneDX SBOM
-        run: npm sbom --sbom-format cyclonedx --output sbom.cdx.json
+        run: npm sbom --sbom-format cyclonedx --package-lock-only > sbom.cdx.json
 
       - name: Run npm audit
         run: npm audit --audit-level=moderate
