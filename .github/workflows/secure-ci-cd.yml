@@ -48,7 +48,11 @@ jobs:
         run: npm run build
 
       - name: Generate CycloneDX SBOM
-        run: npm sbom --sbom-format cyclonedx --package-lock-only > sbom.cdx.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm sbom --sbom-format cyclonedx --package-lock-only > sbom.cdx.json
+          test -s sbom.cdx.json
 
       - name: Run npm audit
         run: npm audit --audit-level=moderate
@@ -63,7 +67,7 @@ jobs:
           retention-days: 14
 
       - name: Upload SBOM artifact
-        if: always()
+        if: success() && hashFiles('sbom.cdx.json') != ''
         uses: actions/upload-artifact@v4
         with:
           name: cyclonedx-sbom
